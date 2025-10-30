@@ -1,16 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor_De_Restaurante</title>
+    <title>Resplandor - Gestión de Restaurantes</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-<section id="Registrar">
-<div>
-    
-</div>
-</section>
+    <!-- Sección de Registro -->
+    <section id="register" class="active-section">
+        <div class="register-container">
+            <div class="header">
+                <div class="logo">🍽️</div>
+                <h1>Únete a Resplandor</h1>
+                <p class="subtitle">Crea tu cuenta y comienza a gestionar tu restaurante</p>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            name="fullName"
+                            placeholder="Nombre completo"
+                            required
+                            minlength="3"
+                        >
+                        <span class="input-icon">👤</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Correo electrónico"
+                            required
+                        >
+                        <span class="input-icon">📧</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            name="password"
+                            placeholder="Contraseña"
+                            required
+                            minlength="8"
+                        >
+                        <span class="input-icon">🔒</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            name="confirmPassword"
+                            placeholder="Confirmar contraseña"
+                            required
+                        >
+                        <span class="input-icon">🔐</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register">
+                    Crear Cuenta
+                </button>
+            </form>
+
+            <div class="login-link">
+                ¿Ya tienes una cuenta? <a href="#" id="showLoginLink">Inicia sesión</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Login -->
+    <section id="login" class="hidden-section">
+        <div class="login-container">
+            <div class="header">
+                <div class="logo">🍽️</div>
+                <h1>Inicia Sesión</h1>
+                <p class="subtitle">Ingresa a tu cuenta de Resplandor</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Correo electrónico"
+                            required
+                        >
+                        <span class="input-icon">📧</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            name="password"
+                            placeholder="Contraseña"
+                            required
+                        >
+                        <span class="input-icon">🔒</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="login-link">
+                ¿No tienes una cuenta? <a href="#" id="showRegisterLink2">Regístrate</a>
+            </div>
+        </div>
+    </section>
+
+      <!-- Sección de Restaurantes (para usuarios) -->
+    <section id="restaurants" class="hidden-section">
+        <div class="restaurants-container">
+            <div class="header">
+                <div class="logo">🍽️</div>
+                <h1>Restaurantes Disponibles</h1>
+                <p class="subtitle">Descubre los mejores restaurantes</p>
+                <button class="logout-btn btn-register" style="margin-top: 20px; background: #e74c3c;">
+                    Cerrar Sesión
+                </button>
+            </div>
+            <div class="restaurants-list" id="restaurantsList">
+                <!-- Los restaurantes se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Administración (solo para admin) -->
+    <section id="admin" class="hidden-section">
+        <div class="admin-container">
+            <div class="header">
+                <div class="logo">🍽️</div>
+                <h1>Panel de Administración</h1>
+                <p class="subtitle">Gestión de Restaurantes</p>
+                <button class="logout-btn btn-register" style="margin-top: 20px; background: #e74c3c;">
+                    Cerrar Sesión
+                </button>
+            </div>
+            
+            <!-- Formulario para crear restaurantes -->
+            <div class="create-restaurant-form">
+                <h2>Crear Nuevo Restaurante</h2>
+                <form id="createRestaurantForm">
+                    <div class="form-group">
+                        <input type="text" name="restaurantName" placeholder="Nombre del restaurante" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="restaurantDescription" placeholder="Descripción del restaurante" required rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select name="restaurantCategory" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Comida rápida">Comida rápida</option>
+                            <option value="Gourmet">Gourmet</option>
+                            <option value="Vegetariano">Vegetariano</option>
+                            <option value="Sushi">Sushi</option>
+                            <option value="Italiana">Italiana</option>
+                            <option value="Mexicana">Mexicana</option>
+                            <option value="Mexicana">asiática</option>
+                            <option value="Mexicana">Alta cocina</option>
+                            <option value="Mexicana">Fusión</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="restaurantLocation" placeholder="Ubicación" required>
+                    </div>
+                    <button type="submit" class="btn-register">Crear Restaurante</button>
+                </form>
+            </div>
+
+            <!-- Lista de restaurantes creados -->
+            <div class="admin-restaurants-list">
+                <h2>Restaurantes Creados</h2>
+                <div id="adminRestaurantsList">
+                    <!-- Los restaurantes se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Sección de Detalle de Restaurante (para ambos roles) -->
+    <section id="restaurant-detail" class="hidden-section">
+        <div class="restaurant-detail-container">
+            <div class="header">
+                <button class="back-btn btn-register" style="background: #95a5a6;">
+                    ← Volver
+                </button>
+                <div class="logo">🍽️</div>
+                <h1 id="restaurantDetailName">Nombre del Restaurante</h1>
+                <p class="subtitle" id="restaurantDetailDescription">Descripción del restaurante</p>
+                <div class="restaurant-meta">
+                    <span class="category" id="restaurantDetailCategory">Categoría</span>
+                    <span class="location" id="restaurantDetailLocation">📍 Ubicación</span>
+                </div>
+            </div>
+
+            <!-- Sección de Platillos -->
+            <div class="dishes-section">
+                <div class="section-header">
+                    <h2>Platillos</h2>
+                    <!-- Solo admin puede agregar platillos -->
+                    <button id="addDishBtn" class="btn-add" style="display: none;">
+                        + Agregar Platillo
+                    </button>
+                </div>
+                
+                <!-- Formulario para agregar platillo (solo admin) -->
+                <div id="addDishForm" class="add-form" style="display: none;">
+                    <h3>Nuevo Platillo</h3>
+                    <form id="createDishForm">
+                        <div class="form-group">
+                            <input type="text" name="dishName" placeholder="Nombre del platillo" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="dishDescription" placeholder="Descripción del platillo" required rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="dishPrice" placeholder="Precio ($)" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="dishCategory" required>
+                                <option value="">Categoría del platillo</option>
+                                <option value="Entrada">Entrada</option>
+                                <option value="Plato Principal">Plato Principal</option>
+                                <option value="Postre">Postre</option>
+                                <option value="Bebida">Bebida</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-register">Crear Platillo</button>
+                            <button type="button" id="cancelDishBtn" class="btn-cancel">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de platillos -->
+                <div class="dishes-list" id="dishesList">
+                    <!-- Platillos se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Sección de Reseñas -->
+            <div class="reviews-section">
+                <div class="section-header">
+                    <h2>Reseñas</h2>
+                    <!-- Usuarios normales pueden agregar reseñas -->
+                    <button id="addReviewBtn" class="btn-add" style="display: none;">
+                        + Agregar Reseña
+                    </button>
+                </div>
+
+                <!-- Formulario para agregar reseña (solo usuarios) -->
+                <div id="addReviewForm" class="add-form" style="display: none;">
+                    <h3>Nueva Reseña</h3>
+                    <form id="createReviewForm">
+                        <div class="form-group">
+                            <textarea name="reviewComment" placeholder="Tu comentario..." required rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Calificación:</label>
+                            <div class="rating-stars">
+                                <span class="star" data-rating="1">⭐</span>
+                                <span class="star" data-rating="2">⭐</span>
+                                <span class="star" data-rating="3">⭐</span>
+                                <span class="star" data-rating="4">⭐</span>
+                                <span class="star" data-rating="5">⭐</span>
+                            </div>
+                            <input type="hidden" name="reviewRating" id="reviewRating" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-register">Publicar Reseña</button>
+                            <button type="button" id="cancelReviewBtn" class="btn-cancel">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de reseñas -->
+                <div class="reviews-list" id="reviewsList">
+                    <!-- Reseñas se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/app.js"></script>
 </body>
 </html>
